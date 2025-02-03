@@ -26,7 +26,7 @@ public class OrderController extends AbstractController<Order> {
         }
     }
 
-    @GetMapping("/price")
+    @GetMapping("/price/{id}")
     public BigDecimal totalPrice(@PathVariable long id) throws ClassCastException {
         ServiceContract<?> service = getService();
 
