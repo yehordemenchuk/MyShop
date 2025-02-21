@@ -20,7 +20,7 @@ public class LoggerAspect {
 
     @Around("execution(* org.myshop..*.*(..))")
     public Object log(ProceedingJoinPoint jointPoint) throws Throwable {
-        logger.info(jointPoint.getSignature().toShortString() + " starts execution");
+        logger.info(String.format("%s starts execution", jointPoint.getSignature().toShortString()));
 
         Instant start = Instant.now();
 
@@ -30,7 +30,7 @@ public class LoggerAspect {
 
         long duration = Duration.between(start, end).toMillis();
 
-        logger.info("Execution time: " + duration + " ms");
+        logger.info(String.format("Execution time: %s ms", duration));
 
         logger.info(jointPoint.getSignature().toShortString() + " ends execution");
 
