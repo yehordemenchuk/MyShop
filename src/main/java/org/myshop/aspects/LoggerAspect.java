@@ -39,13 +39,13 @@ public class LoggerAspect {
 
     @AfterThrowing(value = "execution(* org.myshop..*.*(..))", throwing = "ex")
     public void log(JoinPoint joinPoint, Exception ex) {
-        logger.log(Level.SEVERE, joinPoint.getSignature().toShortString() +
-                " the exception was throwing due " + ex.getMessage());
+        logger.log(Level.SEVERE, String.format("%s the exception was throwing due %s",
+                        joinPoint.getSignature().toShortString(), ex.getMessage()));
     }
 
     @AfterReturning(value = "execution(* org.myshop..*.*(..))", returning = "retVal")
     public void log(JoinPoint joinPoint, Object retVal) {
-        logger.log(Level.INFO, joinPoint.getSignature().toShortString() + " returns "
-                + (retVal == null ? "null" : retVal.toString()));
+        logger.log(Level.INFO, String.format("%s returns %s", joinPoint.getSignature().toShortString(),
+                (retVal == null ? "null" : retVal.toString())));
     }
 }
