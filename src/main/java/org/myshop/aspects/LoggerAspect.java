@@ -46,6 +46,6 @@ public class LoggerAspect {
     @AfterReturning(value = "execution(* org.myshop..*.*(..))", returning = "retVal")
     public void log(JoinPoint joinPoint, Object retVal) {
         logger.log(Level.INFO, String.format("%s returns %s", joinPoint.getSignature().toShortString(),
-                (retVal == null ? "null" : retVal.toString())));
+                retVal));
     }
 }
